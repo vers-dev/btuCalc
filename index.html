@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="card my-4">
+      <div class="card-body" style="background-color: #e9ecef">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="mb-3">
+              <img
+                src="https://www.pdhvac.com/site/templates/images/climate_map_t.png"
+                alt=""
+                class="img-responsive"
+              />
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card shadow2 mb-3">
+              <div class="card-body text-center py-4">
+                <h5 class="card-title text-uppercase m-0">
+                  Recommended Equipment Capacity
+                </h5>
+                <h1 id="btu_snap" class="display-3 mb-4">
+                  <span>9&nbsp;000 BTU</span>
+                </h1>
+                <h6 id="btu_100" class="card-subtitle">
+                  Calculated Cooling Load:
+                  <strong class="text-danger"
+                    ><span>6&nbsp;500 BTU</span></strong
+                  >
+                </h6>
+                <a
+                  id="findpro"
+                  class="btn btn-primary mt-4 mb-3"
+                  href="/pages/search-results-page?page=1&amprb_tags=9000+BTU"
+                  target="_blank"
+                  style="visibility: visible"
+                  >Find Matching Products</a
+                >
+              </div>
+              <div class="card-footer text-muted">
+                <small
+                  >* This calculator is meant to be used only as a general
+                  guide.
+                  <a class="read" href="#disclaimer">Read Disclaimer</a></small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <form
+          id="calculator"
+          class="calculator-form"
+          action="#"
+          style="margin-bottom: 0"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <label for="zone">Climate Region</label>
+              <select id="zone" name="zone" class="pd-input">
+                <option value="0.10">Region #1 - Red</option>
+                <option value="0.05">Region #2 - Orange</option>
+                <option value="0.00" selected="">Region #3 - Yellow</option>
+                <option value="-0.05">Region #4 - Green</option>
+                <option value="-0.10">Region #5 - Blue</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="area">Space Area (sqft)</label>
+              <input
+                type="number"
+                id="area"
+                name="area"
+                value="250"
+                min="100"
+                required=""
+                class="pd-input"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="height">Space Height (ft)</label>
+              <input
+                type="number"
+                id="height"
+                name="height"
+                value="8"
+                min="8"
+                required=""
+                class="pd-input"
+              />
+            </div>
+            <div class="col-md-12 text-center">
+              <button
+                class="btn btn-secondary my-4"
+                id="advcalc"
+                type="button"
+                style="display: none"
+              >
+                Additional Factors
+              </button>
+            </div>
+            <div class="col-md-6">
+              <label for="insulation">Insulation Grade</label>
+              <select id="insulation" name="insulation" class="pd-input">
+                <option value="-0.10">Extremely Well Insulated</option>
+                <option value="-0.05">More than Average Insulation</option>
+                <option value="0.00" selected="">
+                  US Standard Insulation Grade
+                </option>
+                <option value="0.05">Less than US Standard Insulation</option>
+                <option value="0.10">Poorly Insulated</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="sunny">Sun Exposure</label>
+              <select id="sunny" name="sunny" class="pd-input">
+                <option value="0.08">Strong Exposure</option>
+                <option value="0.00" selected="">Average Exposure</option>
+                <option value="-0.08">Shaded or Interior</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="windows">Amount of Windows</label>
+              <select id="windows" name="windows" class="pd-input">
+                <option value="0.00" selected="">Average Amount</option>
+                <option value="0.10">More Windows than Average</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="windows">Windows &amp; Doors Air Tightness</label>
+              <select id="tightness" name="tightness" class="pd-input">
+                <option value="-0.08">Double pane, Well sealed</option>
+                <option value="0.00" selected="">Average Design</option>
+                <option value="0.08">Single pane, Not perfectly sealed</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="glassroom">Is this a Glass Sunroom?</label>
+              <select id="glassroom" name="glassroom" class="pd-input">
+                <option value="0.00" selected="">No</option>
+                <option value="0.40">Yes</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="people">How many occupants?</label>
+              <select id="people" name="people" class="pd-input">
+                <option value="0" selected="">2 or less</option>
+                <option value="600">3</option>
+                <option value="1200">4</option>
+                <option value="1800">5</option>
+                <option value="2400">6</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="kitchen">Is there a kitchen?</label>
+              <select id="kitchen" name="kitchen" class="pd-input">
+                <option value="0" selected="">No</option>
+                <option value="4000">Yes</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="devices"> Extra device heat wattage (W)</label>
+              <input
+                type="number"
+                id="devices"
+                name="devices"
+                value="0"
+                min="0"
+                required=""
+                class="pd-input"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
